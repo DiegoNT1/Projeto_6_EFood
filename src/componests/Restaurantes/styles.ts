@@ -7,6 +7,12 @@ export const Card = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 400px;
+
+  img {
+    max-width: 472px;
+    max-height: 216px;
+  }
 
   ${StyledTag} {
     margin-right: 8px;
@@ -18,6 +24,7 @@ export const DivDescricao = styled.div`
   border-style: solid;
   border-color: ${cores.vermelho};
   padding: 8px;
+  height: 100%;
 
   div {
     display: flex;
@@ -54,8 +61,9 @@ export const Descricao = styled.p`
   font-size: 14px;
   line-height: 22px;
   margin-bottom: 20px;
+  height: 88px;
 `
-export const Infos = styled.div`
+export const Tags = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;

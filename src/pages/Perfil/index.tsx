@@ -1,53 +1,29 @@
+import { useEffect, useState } from 'react'
 import PerfilProducts from '../../componests/PerfilProducts'
-import MoldelPerfil from '../../models/Perfil'
+import { useParams } from 'react-router-dom'
 
-import PizzaMarguerita from '../../assets/images/PizzaMarguerita.png'
+export type Cardapio = {
+  titulo: string
+  capa: string
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
 
-const Products: MoldelPerfil[] = [
-  {
-    id: 1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: PizzaMarguerita
-  },
-  {
-    id: 2,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: PizzaMarguerita
-  },
-  {
-    id: 3,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: PizzaMarguerita
-  },
-  {
-    id: 4,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: PizzaMarguerita
-  },
-  {
-    id: 5,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: PizzaMarguerita
-  },
-  {
-    id: 6,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: PizzaMarguerita
-  }
-]
+const Perfil = () => {
+  const { id } = useParams()
+  const [perfil, setPerfil] = useState<Cardapio[]>([])
 
-const Perfil = () => <PerfilProducts perfilProp={Products} />
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setPerfil(res.cardapio))
+  }, [id])
+
+  return <PerfilProducts perfilProp={perfil} />
+}
 
 export default Perfil

@@ -19,12 +19,5 @@ export const GlobalCss = createGlobalStyle`
   body {
   background-color: ${cores.begeClaro};
   color: ${cores.vermelho};
-
-
-  .Container {
-    max-width: 1024px;
-    width: 100%;
-    margin: 0 auto;
-  }
 }
 `

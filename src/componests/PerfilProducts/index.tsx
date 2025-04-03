@@ -1,24 +1,31 @@
-import MoldelPerfil from '../../models/Perfil'
-import Perfil from '../Perfil'
 import { Container, List } from './styles'
+import Hero from '../Hero'
+import Perfil from '../Perfil'
+import { Cardapio } from '../../pages/Perfil'
 
-export type Props = {
-  perfilProp: MoldelPerfil[]
+type Props = {
+  perfilProp: Cardapio[]
 }
 
 const PerfilProducts = ({ perfilProp }: Props) => (
-  <Container>
-    <List>
-      {perfilProp.map((perfilProp) => (
-        <Perfil
-          key={perfilProp.id}
-          title={perfilProp.title}
-          description={perfilProp.description}
-          image={perfilProp.image}
-        />
-      ))}
-    </List>
-  </Container>
+  <>
+    <Hero />
+    <Container>
+      <List>
+        {perfilProp.map((prato) => (
+          <li key={prato.id}>
+            <Perfil
+              title={prato.nome}
+              description={prato.descricao}
+              porcao={prato.porcao}
+              image={prato.foto}
+              preco={prato.preco}
+            />
+          </li>
+        ))}
+      </List>
+    </Container>
+  </>
 )
 
 export default PerfilProducts
