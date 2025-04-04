@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
 import { Imagem, Titulo, TituloCategoria, Infos } from './styles'
 import { useParams } from 'react-router-dom'
+import { useGetFeaturedPerfilQuery } from '../../services/api'
 
-type Restaurante = {
+type Hero = {
   titulo: string
   tipo: string
   capa: string
@@ -10,16 +10,10 @@ type Restaurante = {
 
 const Hero = () => {
   const { id } = useParams()
-  const [restaurante, setRestaurante] = useState<Restaurante>()
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((data) => setRestaurante(data))
-  }, [id])
+  const { data: restaurante } = useGetFeaturedPerfilQuery(id!)
 
   if (!restaurante) {
-    return <p>Carregando...</p>
+    return <h4>carregando</h4>
   }
 
   return (

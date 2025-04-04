@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useGetFeaturedPerfilQuery } from '../../services/api'
 import PerfilProducts from '../../componests/PerfilProducts'
 import { useParams } from 'react-router-dom'
 
 export type Cardapio = {
+  cardapio: Cardapio[]
+  tipo: string
   titulo: string
   capa: string
   foto: string
@@ -15,15 +17,13 @@ export type Cardapio = {
 
 const Perfil = () => {
   const { id } = useParams()
-  const [perfil, setPerfil] = useState<Cardapio[]>([])
+  const { data: restaurante } = useGetFeaturedPerfilQuery(id!)
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setPerfil(res.cardapio))
-  }, [id])
+  if (restaurante) {
+    return <PerfilProducts perfilProp={restaurante.cardapio} />
+  }
 
-  return <PerfilProducts perfilProp={perfil} />
+  return <h4>Carregando...</h4>
 }
 
 export default Perfil

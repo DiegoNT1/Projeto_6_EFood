@@ -20,6 +20,7 @@ const PerfilProducts = ({ perfilProp }: Props) => (
               porcao={prato.porcao}
               image={prato.foto}
               preco={prato.preco}
+              id={prato.id}
             />
           </li>
         ))}

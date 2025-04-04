@@ -44,6 +44,14 @@ export const LinkIten = styled(Link)`
   text-decoration: none;
   color: inherit;
 `
+
+export const CartButton = styled.a`
+  margin: 80px 176px;
+  font-weight: 900;
+  font-size: 18px;
+  cursor: pointer;
+`
+
 export const LogoPerfil = styled.img`
   padding-top: 64px;
   padding-bottom: 64px;
