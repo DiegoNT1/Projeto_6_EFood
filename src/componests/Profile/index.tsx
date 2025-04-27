@@ -1,14 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import {
-  Card,
-  Descricao,
-  Titulo,
-  Close,
-  Modal,
-  ModalContent,
-  ModalInfos
-} from './styles'
+import * as S from './styles'
 import Button from '../Button'
 import close from '../../assets/images/close.png'
 import { add, open } from '../../store/reducers/cart'
@@ -53,10 +45,10 @@ const Perfil = ({ title, description, image, preco, porcao, id }: Props) => {
   return (
     <>
       <div>
-        <Card>
+        <S.Card>
           <img src={image} alt={title} />
-          <Titulo>{title}</Titulo>
-          <Descricao>{getDescricao(description)}</Descricao>
+          <S.Titulo>{title}</S.Titulo>
+          <S.Descricao>{getDescricao(description)}</S.Descricao>
           <Button
             onClick={() => setModalAberto(true)}
             type="button"
@@ -64,13 +56,13 @@ const Perfil = ({ title, description, image, preco, porcao, id }: Props) => {
           >
             Adicionar ao carrinho
           </Button>
-        </Card>
+        </S.Card>
       </div>
 
-      <Modal className={modalAberto ? 'visivel' : ''}>
-        <ModalContent>
+      <S.Modal className={modalAberto ? 'visivel' : ''}>
+        <S.ModalContent>
           <img src={image} alt={title} />
-          <ModalInfos>
+          <S.ModalInfos>
             <h4>{title}</h4>
             <p>{description}</p>
             <p>Serve: {porcao}</p>
@@ -79,16 +71,16 @@ const Perfil = ({ title, description, image, preco, porcao, id }: Props) => {
               type="button"
               title="Clique aqui para adicionar ao carrinho"
             >
-              {`Adicionar ao carrinho - ${preco}`}
+              {`Adicionar ao carrinho - R$ ${preco.toFixed(2)}`}
             </Button>
-          </ModalInfos>
-          <Close
+          </S.ModalInfos>
+          <S.Close
             onClick={() => setModalAberto(false)}
             src={close}
             alt="fechar"
           />
-        </ModalContent>
-      </Modal>
+        </S.ModalContent>
+      </S.Modal>
     </>
   )
 }

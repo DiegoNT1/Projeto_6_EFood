@@ -15,7 +15,7 @@ export const HeaderBar = styled.header`
 export const Logo = styled.img`
   padding-top: 64px;
 `
-export const Texto = styled.h2`
+export const Text = styled.h2`
   font-size: 36px;
   font-weight: 900;
   padding-top: 136px;

@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
-import Perfil from './pages/Perfil'
+import Perfil from './pages/Profile'
 import Header from './componests/Header'
 
 const Rotas = () => {

@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
-export const Imagem = styled.div`
+export const Image = styled.div`
   position: relative;
   width: 100%;
   height: 280px;
   display: block;
-  color: ${cores.branco};
+  color: ${colors.white};
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -31,14 +31,14 @@ export const Infos = styled.div`
   position: relative;
 `
 
-export const TituloCategoria = styled.h3`
+export const TitleCategory = styled.h3`
   font-weight: 100;
   font-size: 32px;
   margin-bottom: 152px;
   padding-top: 24px;
 `
 
-export const Titulo = styled.h2`
+export const Title = styled.h2`
   font-weight: 900;
   font-size: 32px;
 `

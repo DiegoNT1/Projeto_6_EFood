@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { StyledTag } from '../Tag/styles'
 
 export const Card = styled.div`
-  background-color: ${cores.branco};
+  background-color: ${colors.white};
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ export const Card = styled.div`
 export const DivDescricao = styled.div`
   border-width: 0px 1px 1px 1px;
   border-style: solid;
-  border-color: ${cores.vermelho};
+  border-color: ${colors.red};
   padding: 8px;
   height: 100%;
 

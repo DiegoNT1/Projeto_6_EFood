@@ -6,6 +6,8 @@ import { store } from './store'
 import Rotas from './routes'
 import Footer from './componests/Footer'
 import Cart from './componests/Cart'
+import Checkout from './componests/Checkout'
+import Payment from './componests/Payment'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Footer />
       </BrowserRouter>
       <Cart />
+      <Checkout />
+      <Payment />
     </Provider>
   )
 }

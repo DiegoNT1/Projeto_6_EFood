@@ -1,11 +1,4 @@
-import {
-  Card,
-  Descricao,
-  Titulo,
-  DivDescricao,
-  Pontuacao,
-  Tags
-} from './styles'
+import * as S from './styles'
 import Button from '../Button'
 import Tag from '../Tag'
 import estrela from '../../assets/images/estrela.png'
@@ -37,21 +30,21 @@ const Restaurantes = ({
   }
 
   return (
-    <Card>
-      <Tags>
+    <S.Card>
+      <S.Tags>
         {destacado && <Tag>Destaque da semana</Tag>}
         <Tag>{tipo}</Tag>
-      </Tags>
+      </S.Tags>
       <img src={image} alt={title} />
-      <DivDescricao>
+      <S.DivDescricao>
         <div>
-          <Titulo>{title}</Titulo>
-          <Pontuacao>
+          <S.Titulo>{title}</S.Titulo>
+          <S.Pontuacao>
             <p>{pontuacao}</p>
             <img src={estrela} alt="estrela" />
-          </Pontuacao>
+          </S.Pontuacao>
         </div>
-        <Descricao>{getDescricao(description)}</Descricao>
+        <S.Descricao>{getDescricao(description)}</S.Descricao>
         <div>
           <Button
             type="link"
@@ -61,8 +54,8 @@ const Restaurantes = ({
             Saiba mais
           </Button>
         </div>
-      </DivDescricao>
-    </Card>
+      </S.DivDescricao>
+    </S.Card>
   )
 }
 

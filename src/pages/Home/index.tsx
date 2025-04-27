@@ -1,15 +1,5 @@
-import RestaurantesList from '../../componests/RestaurantesList'
+import RestaurantesList from '../../componests/RestaurantsList'
 import { useGetFeaturedRestauranteQuery } from '../../services/api'
-
-export type Restaurante = {
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: number
-  descricao: string
-  capa: string
-}
 
 const Home = () => {
   const { data: restaurante } = useGetFeaturedRestauranteQuery()

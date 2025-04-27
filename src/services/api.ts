@@ -1,6 +1,34 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Restaurante } from '../pages/Home'
-import { Cardapio } from '../pages/Perfil'
+
+type Products = {
+  id: number
+  price: number
+}
+
+type PurchasePayload = {
+  products: Products[]
+  delivery: {
+    receiver: string
+    address: {
+      description: string
+      city: string
+      zipCode: string
+      number: number
+      complement: string
+    }
+  }
+  payment: {
+    card: {
+      name: string
+      number: string
+      code: number
+      expires: {
+        month: number
+        year: number
+      }
+    }
+  }
+}
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -12,10 +40,21 @@ const api = createApi({
     }),
     getFeaturedPerfil: builder.query<Cardapio, string>({
       query: (id) => `restaurantes/${id}`
+    }),
+    purchase: builder.mutation<any, PurchasePayload>({
+      query: (body) => ({
+        url: 'checkout',
+        method: 'POST',
+        body
+      })
     })
   })
 })
 
-export const { useGetFeaturedRestauranteQuery, useGetFeaturedPerfilQuery } = api
+export const {
+  useGetFeaturedRestauranteQuery,
+  useGetFeaturedPerfilQuery,
+  usePurchaseMutation
+} = api
 
 export default api

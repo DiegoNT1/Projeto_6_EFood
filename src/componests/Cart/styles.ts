@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 import lixeira from '../../assets/images/lixeira.png'
 
@@ -28,7 +28,7 @@ export const CartContainer = styled.div`
 `
 
 export const SideBar = styled.aside`
-  background-color: ${cores.vermelho};
+  background-color: ${colors.red};
   z-index: 1;
   padding: 32px 8px 0px 8px;
   max-width: 360px;
@@ -40,7 +40,7 @@ export const SideBar = styled.aside`
   }
 `
 export const Price = styled.div`
-  color: ${cores.bege};
+  color: ${colors.beige};
   font-weight: 700;
   font-size: 14;
   display: flex;
@@ -50,7 +50,7 @@ export const Price = styled.div`
 `
 
 export const CartItem = styled.li`
-  background-color: ${cores.bege};
+  background-color: ${colors.beige};
   height: 98px;
   margin-bottom: 16px;
   position: relative;

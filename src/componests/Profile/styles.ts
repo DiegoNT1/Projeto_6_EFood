@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const Card = styled.div`
-  color: ${cores.bege};
-  background-color: ${cores.vermelho};
+  color: ${colors.beige};
+  background-color: ${colors.red};
   padding: 8px;
 
   img {
@@ -35,6 +35,7 @@ export const Modal = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
 
   &.visivel {
     display: flex;
@@ -43,10 +44,11 @@ export const Modal = styled.div`
 export const ModalContent = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${cores.vermelho};
+  background-color: ${colors.red};
   max-width: 1024px;
   max-height: 344px;
   padding: 32px;
+  position: relative;
 
   img {
     width: 280px;
@@ -62,7 +64,7 @@ export const Close = styled.img`
 `
 
 export const ModalInfos = styled.div`
-  color: ${cores.branco};
+  color: ${colors.white};
   margin-left: 24px;
 
   h4 {

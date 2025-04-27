@@ -1,4 +1,4 @@
-import { Imagem, Titulo, TituloCategoria, Infos } from './styles'
+import * as S from './styles'
 import { useParams } from 'react-router-dom'
 import { useGetFeaturedPerfilQuery } from '../../services/api'
 
@@ -17,12 +17,12 @@ const Hero = () => {
   }
 
   return (
-    <Imagem style={{ backgroundImage: `url(${restaurante.capa})` }}>
-      <Infos>
-        <TituloCategoria>{restaurante.tipo}</TituloCategoria>
-        <Titulo>{restaurante.titulo}</Titulo>
-      </Infos>
-    </Imagem>
+    <S.Image style={{ backgroundImage: `url(${restaurante.capa})` }}>
+      <S.Infos>
+        <S.TitleCategory>{restaurante.tipo}</S.TitleCategory>
+        <S.Title>{restaurante.titulo}</S.Title>
+      </S.Infos>
+    </S.Image>
   )
 }
 

@@ -1,7 +1,6 @@
-import { Container, List } from './styles'
+import * as S from './styles'
 import Hero from '../Hero'
-import Perfil from '../Perfil'
-import { Cardapio } from '../../pages/Perfil'
+import Perfil from '../Profile'
 
 type Props = {
   perfilProp: Cardapio[]
@@ -10,8 +9,8 @@ type Props = {
 const PerfilProducts = ({ perfilProp }: Props) => (
   <>
     <Hero />
-    <Container>
-      <List>
+    <S.Container>
+      <S.List>
         {perfilProp.map((prato) => (
           <li key={prato.id}>
             <Perfil
@@ -24,8 +23,8 @@ const PerfilProducts = ({ perfilProp }: Props) => (
             />
           </li>
         ))}
-      </List>
-    </Container>
+      </S.List>
+    </S.Container>
   </>
 )
 

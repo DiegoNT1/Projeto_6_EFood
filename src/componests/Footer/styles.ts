@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const Container = styled.footer`
-  background-color: ${cores.bege};
+  background-color: ${colors.beige};
   height: 298px;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ export const SocialItens = styled.img`
   padding-right: 8px;
 `
 
-export const Texto = styled.p`
+export const Text = styled.p`
   font-size: 10px;
   font-weight: 400;
   margin-bottom: 40px;

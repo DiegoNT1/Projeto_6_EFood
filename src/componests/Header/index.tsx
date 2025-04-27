@@ -1,14 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {
-  HeaderBar,
-  Logo,
-  Texto,
-  HeaderBarPerfil,
-  LinkIten,
-  LogoPerfil,
-  CartButton
-} from './styles'
+import * as S from './styles'
 import logo from '../../assets/images/logo.png'
 import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
@@ -27,26 +19,28 @@ const Header = ({ type }: Props) => {
 
   if (type === 'Home') {
     return (
-      <HeaderBar>
-        <Link to="/">
-          <Logo src={logo} alt="EFOOD" />
+      <S.HeaderBar>
+        <Link title="Clique aqui para voltar para o inicio" to="/">
+          <S.Logo src={logo} alt="EFOOD" />
         </Link>
-        <Texto>Viva experiências gastronômicas no conforto da sua casa</Texto>
-      </HeaderBar>
+        <S.Text>Viva experiências gastronômicas no conforto da sua casa</S.Text>
+      </S.HeaderBar>
     )
   }
   return (
-    <HeaderBarPerfil>
+    <S.HeaderBarPerfil>
       <div>
-        <LinkIten to="/">Restaurantes</LinkIten>
-        <Link to="/">
-          <LogoPerfil src={logo} alt="EFOOD" />
+        <S.LinkIten title="Clique aqui para voltar para o inicio" to="/">
+          Restaurantes
+        </S.LinkIten>
+        <Link title="Clique aqui para voltar para o inicio" to="/">
+          <S.LogoPerfil src={logo} alt="EFOOD" />
         </Link>
-        <CartButton onClick={openCart}>
+        <S.CartButton onClick={openCart}>
           {items.length} produto(s) no carrinho
-        </CartButton>
+        </S.CartButton>
       </div>
-    </HeaderBarPerfil>
+    </S.HeaderBarPerfil>
   )
 }
 
