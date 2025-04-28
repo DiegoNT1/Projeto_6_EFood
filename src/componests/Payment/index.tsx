@@ -1,16 +1,21 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
+import InputMask from 'react-input-mask'
+
 import { RootReducer } from '../../store'
-import Button from '../Button'
-import * as S from './styles'
 import { close } from '../../store/reducers/payment'
 import { usePurchaseMutation } from '../../services/api'
+
+import * as S from './styles'
+import Button from '../Button'
 
 const Payment = () => {
   const dispatch = useDispatch()
   const { isOpen } = useSelector((state: RootReducer) => state.payment)
   const { receiver, address } = useSelector((state: RootReducer) => state.order)
+
+  const { items } = useSelector((state: RootReducer) => state.payment)
 
   const [purchase, { data, isSuccess }] = usePurchaseMutation()
 
@@ -32,7 +37,6 @@ const Payment = () => {
         .required('O nome no cartão é obrigatório'),
       cardNumber: Yup.string()
         .min(13, 'O número do cartão deve ter pelo menos 13 dígitos')
-        .max(13, 'O número do cartão deve ter no maximo 13 dígitos')
         .required('O número do cartão é obrigatório'),
       CVV: Yup.string()
         .min(3, 'O CVV deve ter 3 dígitos')
@@ -48,17 +52,16 @@ const Payment = () => {
         .required('O ano de vencimento é obrigatório')
     }),
     onSubmit: (values) => {
+      console.log(items)
       purchase({
         delivery: {
           receiver,
           address
         },
-        products: [
-          {
-            id: 1,
-            price: 0
-          }
-        ],
+        products: items.map((items) => ({
+          id: items.id,
+          price: items.preco
+        })),
         payment: {
           card: {
             name: values.cardName,
@@ -89,7 +92,7 @@ const Payment = () => {
     >
       <S.Overlay onClick={closePayment} />
       <S.SideBar>
-        {isSuccess ? (
+        {isSuccess && data ? (
           <div className="confirmarcao">
             <h3>Pedido realizado - {data.orderId}</h3>
             <p>
@@ -131,13 +134,14 @@ const Payment = () => {
               <S.Div>
                 <div>
                   <label htmlFor="cardNumber">Número do cartão</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="cardNumber"
                     name="cardNumber"
                     value={form.values.cardNumber}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    mask="9999 9999 9999 9999"
                   />
                   <small>
                     {getErrorMessage('cardNumber', form.errors.cardNumber)}
@@ -145,13 +149,14 @@ const Payment = () => {
                 </div>
                 <div>
                   <label htmlFor="CVV">CVV</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="CVV"
                     name="CVV"
                     value={form.values.CVV}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    mask="999"
                   />
                   <small>{getErrorMessage('CVV', form.errors.CVV)}</small>
                 </div>
@@ -159,13 +164,14 @@ const Payment = () => {
               <S.Div>
                 <div>
                   <label htmlFor="expiresMonth">Mês de vencimento</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="expiresMonth"
                     name="expiresMonth"
                     value={form.values.expiresMonth}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    mask="99"
                   />
                   <small>
                     {getErrorMessage('expiresMonth', form.errors.expiresMonth)}
@@ -173,13 +179,14 @@ const Payment = () => {
                 </div>
                 <div>
                   <label htmlFor="expiresYear">Ano de vencimento</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="expiresYear"
                     name="expiresYear"
                     value={form.values.expiresYear}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    mask="9999"
                   />
                   <small>
                     {getErrorMessage('expiresYear', form.errors.expiresYear)}

@@ -10,7 +10,7 @@ type Hero = {
 
 const Hero = () => {
   const { id } = useParams()
-  const { data: restaurante } = useGetFeaturedPerfilQuery(id!)
+  const { data: restaurante } = useGetFeaturedPerfilQuery(id ?? '')
 
   if (!restaurante) {
     return <h4>carregando</h4>

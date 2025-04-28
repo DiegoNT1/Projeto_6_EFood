@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 type paymentState = {
+  items: Cardapio[]
   isOpen: boolean
 }
 
 const initialState: paymentState = {
+  items: [],
   isOpen: false
 }
 

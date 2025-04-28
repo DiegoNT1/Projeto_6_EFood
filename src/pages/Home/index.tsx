@@ -2,12 +2,17 @@ import RestaurantesList from '../../componests/RestaurantsList'
 import { useGetFeaturedRestauranteQuery } from '../../services/api'
 
 const Home = () => {
-  const { data: restaurante } = useGetFeaturedRestauranteQuery()
+  const { data: restaurant, isLoading } = useGetFeaturedRestauranteQuery()
 
-  if (restaurante) {
-    return <RestaurantesList restaurantesProp={restaurante} />
+  if (isLoading) {
+    return <RestaurantesList restaurantesProp={[]} isLoading={true} />
   }
-  return <h4>Carregando</h4>
+
+  if (restaurant) {
+    return <RestaurantesList restaurantesProp={restaurant} isLoading={false} />
+  }
+
+  return <h4>Erro ao carregar</h4>
 }
 
 export default Home

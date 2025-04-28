@@ -19,8 +19,11 @@ const Cart = () => {
   }
 
   const getTotalPrice = () => {
-    return items.reduce((acumulador, valorAtual) => {
-      return acumulador + valorAtual.preco
+    return items.reduce((accumulator, totalPrice) => {
+      if (totalPrice.preco) {
+        return (accumulator += totalPrice.preco)
+      }
+      return 0
     }, 0)
   }
 
@@ -32,34 +35,42 @@ const Cart = () => {
     <S.CartContainer className={isOpen ? 'is-open' : ''}>
       <S.Overlay onClick={closeCart} />
       <S.SideBar>
-        <ul>
-          {items.map((item) => (
-            <S.CartItem key={item.id}>
-              <S.CartList>
-                <img src={item.foto} alt={item.nome} />
-                <div>
-                  <h3>{item.titulo}</h3>
-                  <p>{`R$ ${item.preco.toFixed(2)}`}</p>
-                </div>
-                <button onClick={() => removeItem(item.id)} type="button" />
-              </S.CartList>
-            </S.CartItem>
-          ))}
-        </ul>
-        <S.Price>
-          <p>Valor total:</p>
-          <p>R$ {getTotalPrice().toFixed(2)}</p>
-        </S.Price>
-        <Button
-          onClick={() => {
-            openCheckout()
-            closeCart()
-          }}
-          type="button"
-          title="Continuar com a entrega"
-        >
-          Continuar com a entrega
-        </Button>
+        {items.length > 0 ? (
+          <>
+            <ul>
+              {items.map((item) => (
+                <S.CartItem key={item.id}>
+                  <S.CartList>
+                    <img src={item.foto} alt={item.nome} />
+                    <div>
+                      <h3>{item.titulo}</h3>
+                      <p>{`R$ ${item.preco.toFixed(2)}`}</p>
+                    </div>
+                    <button onClick={() => removeItem(item.id)} type="button" />
+                  </S.CartList>
+                </S.CartItem>
+              ))}
+            </ul>
+            <S.Price>
+              <p>Valor total:</p>
+              <p>R$ {getTotalPrice().toFixed(2)}</p>
+            </S.Price>
+            <Button
+              onClick={() => {
+                openCheckout()
+                closeCart()
+              }}
+              type="button"
+              title="Continuar com a entrega"
+            >
+              Continuar com a entrega
+            </Button>
+          </>
+        ) : (
+          <p className="empty-text">
+            O carrinho está vazio. Adicione um produto
+          </p>
+        )}
       </S.SideBar>
     </S.CartContainer>
   )

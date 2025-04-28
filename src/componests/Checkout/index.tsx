@@ -1,16 +1,20 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
+import InputMask from 'react-input-mask'
+
 import { RootReducer } from '../../store'
-import Button from '../Button'
-import * as S from './styles'
 import { close } from '../../store/reducers/checkout'
 import { open } from '../../store/reducers/payment'
 import { saveCheckoutData } from '../../store/reducers/order'
 
+import Button from '../Button'
+import * as S from './styles'
+
 const Checkout = () => {
   const dispatch = useDispatch()
   const { isOpen } = useSelector((state: RootReducer) => state.checkout)
+  const { items } = useSelector((state: RootReducer) => state.cart)
 
   const openPayment = () => {
     dispatch(open())
@@ -72,6 +76,11 @@ const Checkout = () => {
     return ''
   }
 
+  if (items.length === 0) {
+    dispatch(close())
+    return null
+  }
+
   return (
     <>
       <S.CheckoutContainer
@@ -120,13 +129,14 @@ const Checkout = () => {
               <S.DivCepN>
                 <div>
                   <label htmlFor="CEP">CEP</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="CEP"
                     name="CEP"
                     value={form.values.CEP}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    mask="99999-999"
                   />
                   <small>{getErrorMessage('CEP', form.errors.CEP)}</small>
                 </div>
