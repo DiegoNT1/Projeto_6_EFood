@@ -1,4 +1,3 @@
-// store/reducers/order.ts
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 type CheckoutData = {

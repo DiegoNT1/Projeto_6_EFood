@@ -58,7 +58,6 @@ const Cart = () => {
             <Button
               onClick={() => {
                 openCheckout()
-                closeCart()
               }}
               type="button"
               title="Continuar com a entrega"

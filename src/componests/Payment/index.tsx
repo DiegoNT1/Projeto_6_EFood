@@ -1,8 +1,9 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useDispatch, useSelector } from 'react-redux'
 import InputMask from 'react-input-mask'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { clear as clearCart } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
 import { close } from '../../store/reducers/payment'
 import { usePurchaseMutation } from '../../services/api'
@@ -14,13 +15,13 @@ const Payment = () => {
   const dispatch = useDispatch()
   const { isOpen } = useSelector((state: RootReducer) => state.payment)
   const { receiver, address } = useSelector((state: RootReducer) => state.order)
-
-  const { items } = useSelector((state: RootReducer) => state.payment)
+  const items = useSelector((state: RootReducer) => state.cart.items)
 
   const [purchase, { data, isSuccess }] = usePurchaseMutation()
 
-  const closePayment = () => {
+  const terminatePayment = () => {
     dispatch(close())
+    dispatch(clearCart())
   }
 
   const form = useFormik({
@@ -90,7 +91,7 @@ const Payment = () => {
       onSubmit={form.handleSubmit}
       className={isOpen ? 'is-open' : ''}
     >
-      <S.Overlay onClick={closePayment} />
+      <S.Overlay onClick={() => dispatch(close())} />
       <S.SideBar>
         {isSuccess && data ? (
           <div className="confirmarcao">
@@ -109,7 +110,11 @@ const Payment = () => {
               Esperamos que desfrute de uma deliciosa e agradável experiência
               gastronômica. Bom apetite!
             </p>
-            <Button onClick={closePayment} type={'button'} title={'Concluir'}>
+            <Button
+              onClick={terminatePayment}
+              type={'button'}
+              title={'Concluir'}
+            >
               Concluir
             </Button>
           </div>
@@ -204,7 +209,7 @@ const Payment = () => {
                   Finalizar pagamento
                 </Button>
                 <Button
-                  onClick={closePayment}
+                  onClick={() => dispatch(close())}
                   type={'button'}
                   title={'Voltar para a edição de endereço'}
                 >

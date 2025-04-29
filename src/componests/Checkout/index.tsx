@@ -16,6 +16,8 @@ const Checkout = () => {
   const { isOpen } = useSelector((state: RootReducer) => state.checkout)
   const { items } = useSelector((state: RootReducer) => state.cart)
 
+  console.log('Carrinho:', items)
+
   const openPayment = () => {
     dispatch(open())
   }
@@ -181,7 +183,6 @@ const Checkout = () => {
                     if (Object.keys(isValid).length === 0) {
                       form.submitForm()
                       openPayment()
-                      closeCheckout()
                     }
                   }}
                   type="button"
