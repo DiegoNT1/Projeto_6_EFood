@@ -1,46 +1,87 @@
-# Getting Started with Create React App
+# 🍽️ Projeto 6: EFood
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sexto projeto do curso da **EBAC**, desenvolvido por [DiegoNT1](https://github.com/DiegoNT1).
 
-## Available Scripts
+O **EFood** é uma aplicação web feita com **React** e **TypeScript** que simula um sistema completo de pedidos para restaurantes. Os usuários podem navegar por estabelecimentos, visualizar cardápios, adicionar itens ao carrinho e finalizar o pedido por meio de uma página de checkout.
 
-In the project directory, you can run:
+🔗 **Visualize online:**  
+👉 [https://projeto-6-e-food.vercel.app](https://projeto-6-e-food.vercel.app)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🧾 Visão Geral
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+A aplicação apresenta uma experiência fluida e moderna de e-commerce voltado para restaurantes:
 
-### `npm test`
+- 🏪 **Listagem de restaurantes** com imagem, nome, tipo e avaliação  
+- 🍝 **Cardápio detalhado**, com descrição, imagem e preço dos pratos  
+- 🛒 **Carrinho de compras funcional**, com opção de adicionar/remover itens  
+- 📋 **Página de checkout** com formulário de dados do cliente  
+- ✅ **Tela de confirmação de pedido**, com feedback final
+- ⚙️ **Gerenciamento de estado com React** e componentes reutilizáveis
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🚀 Tecnologias Utilizadas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React** – biblioteca principal da interface  
+- **TypeScript** – tipagem estática para maior segurança e organização  
+- **Vite** – ferramenta de build e desenvolvimento rápido  
+- **Styled Components** – estilização com CSS-in-JS  
+- **React Hooks** – gerenciamento de estado e ciclo de vida  
+- **ESLint + Prettier** – padronização de código  
+- **Vercel** – deploy da aplicação
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📁 Estrutura do Projeto (resumida)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+Projeto_6_EFood/
+├── public/ # Arquivos estáticos
+├── src/
+│ ├── assets/ # Imagens e ícones
+│ ├── components/ # Componentes reutilizáveis
+│ ├── pages/ # Páginas principais (Home, Checkout, etc.)
+│ ├── services/ # Requisições e dados
+│ ├── types/ # Tipagens do projeto
+│ ├── styles/ # Estilos globais
+│ └── main.tsx # Ponto de entrada
+├── tsconfig.json # Configuração TypeScript
+└── vite.config.ts # Configuração do Vitel
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## 🧪 Como Executar Localmente
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/DiegoNT1/Projeto_6_EFood.git
+   ```
+2. Acesse a pasta do projeto:
+  ```bash
+  cd Projeto_6_EFood
+```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+4. Execute o servidor local:
+   ```bash
+   npm run dev
+   ```
+5. Acesse no navegador:
+   ```bash
+   http://localhost:5173
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###🔮 Melhorias Futuras
+
+Busca e filtro de restaurantes 🔍
+
+Layout totalmente responsivo para dispositivos móveis 📱
+
