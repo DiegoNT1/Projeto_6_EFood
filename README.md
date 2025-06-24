@@ -82,7 +82,7 @@ Projeto_6_EFood/
 
 ---
 
-##🔮 Melhorias Futuras
+## 🔮 Melhorias Futuras
 
 Busca e filtro de restaurantes 🔍
 
