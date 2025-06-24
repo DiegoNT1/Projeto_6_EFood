@@ -64,7 +64,7 @@ Projeto_6_EFood/
    ```
 2. Acesse a pasta do projeto:
   ```bash
-  cd Projeto_6_EFood
+   cd Projeto_6_EFood
 ```
 3. Instale as dependências:
    ```bash
@@ -78,6 +78,9 @@ Projeto_6_EFood/
    ```bash
    http://localhost:5173
    ```
+
+
+---
 
 ###🔮 Melhorias Futuras
 
