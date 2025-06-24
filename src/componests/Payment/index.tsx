@@ -1,0 +1,227 @@
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import InputMask from 'react-input-mask'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { clear as clearCart } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
+import { close } from '../../store/reducers/payment'
+import { usePurchaseMutation } from '../../services/api'
+
+import * as S from './styles'
+import Button from '../Button'
+
+const Payment = () => {
+  const dispatch = useDispatch()
+  const { isOpen } = useSelector((state: RootReducer) => state.payment)
+  const { receiver, address } = useSelector((state: RootReducer) => state.order)
+  const items = useSelector((state: RootReducer) => state.cart.items)
+
+  const [purchase, { data, isSuccess }] = usePurchaseMutation()
+
+  const terminatePayment = () => {
+    dispatch(close())
+    dispatch(clearCart())
+  }
+
+  const form = useFormik({
+    initialValues: {
+      cardName: '',
+      cardNumber: '',
+      CVV: '',
+      expiresMonth: '',
+      expiresYear: ''
+    },
+    validationSchema: Yup.object({
+      cardName: Yup.string()
+        .min(5, 'O nome no cartão precisa ter pelo menos 5 caracteres')
+        .required('O nome no cartão é obrigatório'),
+      cardNumber: Yup.string()
+        .min(13, 'O número do cartão deve ter pelo menos 13 dígitos')
+        .required('O número do cartão é obrigatório'),
+      CVV: Yup.string()
+        .min(3, 'O CVV deve ter 3 dígitos')
+        .max(3, 'O CVV deve ter 3 dígitos')
+        .required('O CVV é obrigatório'),
+      expiresMonth: Yup.string()
+        .min(2, 'O mês deve ter 2 dígitos')
+        .max(2, 'O mês deve ter 2 dígitos')
+        .required('O mês de vencimento é obrigatório'),
+      expiresYear: Yup.string()
+        .min(4, 'O ano deve ter 4 dígitos')
+        .max(4, 'O ano deve ter 4 dígitos')
+        .required('O ano de vencimento é obrigatório')
+    }),
+    onSubmit: (values) => {
+      console.log(items)
+      purchase({
+        delivery: {
+          receiver,
+          address
+        },
+        products: items.map((items) => ({
+          id: items.id,
+          price: items.preco
+        })),
+        payment: {
+          card: {
+            name: values.cardName,
+            number: values.cardNumber,
+            code: Number(values.CVV),
+            expires: {
+              month: Number(values.expiresMonth),
+              year: Number(values.expiresYear)
+            }
+          }
+        }
+      })
+    }
+  })
+
+  const getErrorMessage = (fieldName: string, message?: string) => {
+    const isTouched = fieldName in form.touched
+    const isInvalid = fieldName in form.errors
+
+    if (isTouched && isInvalid) return message
+    return ''
+  }
+
+  return (
+    <S.PaymentContainer
+      onSubmit={form.handleSubmit}
+      className={isOpen ? 'is-open' : ''}
+    >
+      <S.Overlay onClick={() => dispatch(close())} />
+      <S.SideBar>
+        {isSuccess && data ? (
+          <div className="confirmarcao">
+            <h3>Pedido realizado - {data.orderId}</h3>
+            <p>
+              Estamos felizes em informar que seu pedido já está em processo de
+              preparação e, em breve, será entregue no endereço fornecido.
+              <span className="spacer" />
+              Gostaríamos de ressaltar que nossos entregadores não estão
+              autorizados a realizar cobranças extras.
+              <span className="spacer" />
+              Lembre-se da importância de higienizar as mãos após o recebimento
+              do pedido, garantindo assim sua segurança e bem-estar durante a
+              refeição.
+              <span className="spacer" />
+              Esperamos que desfrute de uma deliciosa e agradável experiência
+              gastronômica. Bom apetite!
+            </p>
+            <Button
+              onClick={terminatePayment}
+              type={'button'}
+              title={'Concluir'}
+            >
+              Concluir
+            </Button>
+          </div>
+        ) : (
+          <ul>
+            <li>
+              <h3>Entrega</h3>
+              <div>
+                <label htmlFor="cardName">Nome no cartão</label>
+                <input
+                  type="text"
+                  id="cardName"
+                  name="cardName"
+                  value={form.values.cardName}
+                  onChange={form.handleChange}
+                  onBlur={form.handleBlur}
+                />
+                <small>
+                  {getErrorMessage('cardName', form.errors.cardName)}
+                </small>
+              </div>
+              <S.Div>
+                <div>
+                  <label htmlFor="cardNumber">Número do cartão</label>
+                  <InputMask
+                    type="text"
+                    id="cardNumber"
+                    name="cardNumber"
+                    value={form.values.cardNumber}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    mask="9999 9999 9999 9999"
+                  />
+                  <small>
+                    {getErrorMessage('cardNumber', form.errors.cardNumber)}
+                  </small>
+                </div>
+                <div>
+                  <label htmlFor="CVV">CVV</label>
+                  <InputMask
+                    type="text"
+                    id="CVV"
+                    name="CVV"
+                    value={form.values.CVV}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    mask="999"
+                  />
+                  <small>{getErrorMessage('CVV', form.errors.CVV)}</small>
+                </div>
+              </S.Div>
+              <S.Div>
+                <div>
+                  <label htmlFor="expiresMonth">Mês de vencimento</label>
+                  <InputMask
+                    type="text"
+                    id="expiresMonth"
+                    name="expiresMonth"
+                    value={form.values.expiresMonth}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    mask="99"
+                  />
+                  <small>
+                    {getErrorMessage('expiresMonth', form.errors.expiresMonth)}
+                  </small>
+                </div>
+                <div>
+                  <label htmlFor="expiresYear">Ano de vencimento</label>
+                  <InputMask
+                    type="text"
+                    id="expiresYear"
+                    name="expiresYear"
+                    value={form.values.expiresYear}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    mask="9999"
+                  />
+                  <small>
+                    {getErrorMessage('expiresYear', form.errors.expiresYear)}
+                  </small>
+                </div>
+              </S.Div>
+              <S.Buttons>
+                <Button
+                  onClick={() => {
+                    form.submitForm()
+                  }}
+                  type={'button'}
+                  title={'Finalizar pagamento'}
+                >
+                  Finalizar pagamento
+                </Button>
+                <Button
+                  onClick={() => dispatch(close())}
+                  type={'button'}
+                  title={'Voltar para a edição de endereço'}
+                >
+                  Voltar para a edição de endereço
+                </Button>
+              </S.Buttons>
+            </li>
+          </ul>
+        )}
+      </S.SideBar>
+    </S.PaymentContainer>
+  )
+}
+
+export default Payment
