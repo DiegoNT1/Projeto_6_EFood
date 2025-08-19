@@ -1,5 +1,19 @@
 # 🍽️ Projeto 6: EFood
 
+**Este projeto encontra-se atualmente em _manutenção_.** A API utilizada foi atualizada e, temporariamente, a aplicação foi desativada até que as chamadas sejam ajustadas ao novo esquema da API.
+
+---
+
+##  Situação Atual
+
+-  O projeto está **em manutenção** e não está funcional no momento.
+-  A API externa foi atualizada, e será necessário revisar e adequar as requisições (endpoints, formatos, autenticação, etc.) para restabelecer o funcionamento.
+
+---
+
+##  Visão (antes da manutenção): 
+
+
 Sexto projeto do curso da **EBAC**, desenvolvido por [DiegoNT1](https://github.com/DiegoNT1).
 
 O **EFood** é uma aplicação web feita com **React** e **TypeScript** que simula um sistema completo de pedidos para restaurantes. Os usuários podem navegar por estabelecimentos, visualizar cardápios, adicionar itens ao carrinho e finalizar o pedido por meio de uma página de checkout.
