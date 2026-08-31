@@ -6,8 +6,11 @@
 
 ##  Situação Atual
 
--  O projeto está **em manutenção** e não está funcional no momento.
--  A API externa foi atualizada, e será necessário revisar e adequar as requisições (endpoints, formatos, autenticação, etc.) para restabelecer o funcionamento.
+- O projeto encontra-se temporariamente em manutenção.
+
+- A API externa utilizada originalmente foi atualizada e as requisições da aplicação precisam ser adaptadas ao novo esquema da API. Por esse motivo, a versão publicada atualmente não está funcional.
+
+- Enquanto a aplicação passa por essa manutenção, o projeto pode ser consultado por meio do código-fonte e do protótipo desenvolvido no Figma.
 
 ---
 
