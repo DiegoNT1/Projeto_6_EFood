@@ -1,27 +1,10 @@
 # 🍽️ Projeto 6: EFood
 
-**Este projeto encontra-se atualmente em _manutenção_.** A API utilizada foi atualizada e, temporariamente, a aplicação foi desativada até que as chamadas sejam ajustadas ao novo esquema da API.
-
 ---
-
-##  Situação Atual
-
-- O projeto encontra-se temporariamente em manutenção.
-
-- A API externa utilizada originalmente foi atualizada e as requisições da aplicação precisam ser adaptadas ao novo esquema da API. Por esse motivo, a versão publicada atualmente não está funcional.
-
-- Enquanto a aplicação passa por essa manutenção, o projeto pode ser consultado por meio do código-fonte e do protótipo desenvolvido no Figma.
-
----
-
-##  Visão (antes da manutenção): https://www.figma.com/design/LFosBbDVbhDwOGRbAWDoBS/EFood?node-id=0-1&m=dev&t=xxAWCOOAT46G5lhQ-1
-
----
-
 
 Sexto projeto do curso da **EBAC**, desenvolvido por [DiegoNT1](https://github.com/DiegoNT1).
 
-O **EFood** é uma aplicação web feita com **React** e **TypeScript** que simula um sistema completo de pedidos para restaurantes. Os usuários podem navegar por estabelecimentos, visualizar cardápios, adicionar itens ao carrinho e finalizar o pedido por meio de uma página de checkout.
+O **EFood** é uma aplicação web desenvolvida com **React** e **TypeScript** que simula um sistema de pedidos para restaurantes. Os usuários podem navegar pelos estabelecimentos, visualizar cardápios, adicionar produtos ao carrinho e finalizar pedidos.
 
 🔗 **Visualize online:**  
 👉 [https://projeto-6-e-food.vercel.app](https://projeto-6-e-food.vercel.app)
