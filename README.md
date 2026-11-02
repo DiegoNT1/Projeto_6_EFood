@@ -20,18 +20,19 @@ A aplicação apresenta uma experiência fluida e moderna de e-commerce voltado 
 - 🛒 **Carrinho de compras funcional**, com opção de adicionar/remover itens  
 - 📋 **Página de checkout** com formulário de dados do cliente  
 - ✅ **Tela de confirmação de pedido**, com feedback final
-- ⚙️ **Gerenciamento de estado com React** e componentes reutilizáveis
+- ⚙️ **Gerenciamento de estado com Redux Toolkit** e componentes reutilizáveis
 
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
-- **React** – biblioteca principal da interface  
-- **TypeScript** – tipagem estática para maior segurança e organização  
-- **Vite** – ferramenta de build e desenvolvimento rápido  
-- **Styled Components** – estilização com CSS-in-JS  
-- **React Hooks** – gerenciamento de estado e ciclo de vida  
-- **ESLint + Prettier** – padronização de código  
+- **React** – biblioteca principal da interface
+- **Redux Toolkit** – gerenciamento de estado global
+- **React Router DOM** – gerenciamento de rotas
+- **Formik + Yup** – gerenciamento e validação de formulários
+- **TypeScript** – tipagem estática para maior segurança e organização
+- **Styled Components** – estilização com CSS-in-JS
+- **ESLint + Prettier** – padronização de código
 - **Vercel** – deploy da aplicação
 
 ---
@@ -42,17 +43,22 @@ A aplicação apresenta uma experiência fluida e moderna de e-commerce voltado 
 
 ```bash
 Projeto_6_EFood/
-├── public/ # Arquivos estáticos
+├── public/                  # Arquivos estáticos
 ├── src/
-│ ├── assets/ # Imagens e ícones
-│ ├── components/ # Componentes reutilizáveis
-│ ├── pages/ # Páginas principais (Home, Checkout, etc.)
-│ ├── services/ # Requisições e dados
-│ ├── types/ # Tipagens do projeto
-│ ├── styles/ # Estilos globais
-│ └── main.tsx # Ponto de entrada
-├── tsconfig.json # Configuração TypeScript
-└── vite.config.ts # Configuração do Vitel
+│   ├── assets/              # Imagens e ícones
+│   ├── componests/          # Componentes reutilizáveis
+│   ├── pages/               # Páginas principais (Home, Profile)
+│   ├── services/            # Requisições à API
+│   ├── store/               # Gerenciamento de estado global (Redux)
+│   │   └── reducers/        # Reducers do Redux
+│   ├── App.tsx
+│   ├── index.tsx            # Ponto de entrada
+│   ├── routes.tsx           # Configuração das rotas
+│   ├── styles.ts            # Estilos globais
+│   └── types.d.ts            # Tipagens do projeto
+├── package.json
+├── tsconfig.json
+└── package-lock.json
 ```
 
 
@@ -74,11 +80,11 @@ Projeto_6_EFood/
    ```
 4. Execute o servidor local:
    ```bash
-   npm run dev
+   npm start
    ```
 5. Acesse no navegador:
    ```bash
-   http://localhost:5173
+   http://localhost:3000
    ```
 
 
