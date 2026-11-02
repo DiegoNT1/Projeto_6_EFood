@@ -72,8 +72,8 @@ Projeto_6_EFood/
    ```
 2. Acesse a pasta do projeto:
   ```bash
-   cd Projeto_6_EFood
-```
+  cd Projeto_6_EFood
+  ```
 3. Instale as dependências:
    ```bash
    npm install
